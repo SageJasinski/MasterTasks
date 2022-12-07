@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.preference.PreferenceManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
@@ -14,7 +15,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
+    ArrayList<Tasks> taskModel = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +28,10 @@ public class MainActivity extends AppCompatActivity {
         ImageButton imgBtn = findViewById(R.id.main_user_setting_btn);
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
-//        RecyclerView.LayoutManager
+        setTaskModel();
+        Task_Adapter adapter = new Task_Adapter(this, taskModel);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
         imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,5 +62,13 @@ public class MainActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.main_username)).setText(username);
     }
 
+    private void setTaskModel(){
+        String[] taskTitle = getResources().getStringArray(R.array.default_tasks_titles);
+        String[] taskDescription = getResources().getStringArray(R.array.default_tasks_description);
+
+        for (int i = 0; i < taskTitle.length; i++){
+            taskModel.add(new Tasks(taskTitle[i], taskDescription[i], false));
+        }
+    }
 
 }

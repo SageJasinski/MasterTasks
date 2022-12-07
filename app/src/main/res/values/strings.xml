@@ -1,4 +1,30 @@
 <resources>
     <string name="app_name">MasterTask</string>
     <string name="title_activity_adda_task">AddaTask</string>
+
+    <string-array name="default_tasks_titles">
+        <item>Todo</item>
+        <item>Todo</item>
+        <item>Todo</item>
+        <item>Todo</item>
+        <item>Todo</item>
+        <item>Todo</item>
+        <item>Todo</item>
+        <item>Todo</item>
+        <item>Todo</item>
+        <item>Todo</item>
+    </string-array>
+
+    <string-array name="default_tasks_description">
+        <item>Pick up the kids</item>
+        <item>Go to the store</item>
+        <item>Take max to his doctors apt</item>
+        <item>Finish school project</item>
+        <item>Go to meeting</item>
+        <item>Study Japanese</item>
+        <item>Cook dinner</item>
+        <item>Take sofi to her tennis practice</item>
+        <item>Bring punch to the picnic</item>
+        <item>Find all the left socks</item>
+    </string-array>
 </resources>
