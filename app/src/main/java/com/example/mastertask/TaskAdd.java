@@ -1,6 +1,8 @@
 package com.example.mastertask;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
 
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -14,16 +16,18 @@ import com.example.mastertask.database.TaskmasterData;
 import java.util.Date;
 
 public class TaskAdd extends AppCompatActivity {
+    TaskmasterData taskmasterData;
+    Spinner taskSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_taskadd);
+        taskmasterData = Room.databaseBuilder(getApplicationContext(), TaskmasterData.class, "task_database").allowMainThreadQueries().build();
         saveToDB();
     }
 
-    TaskmasterData taskmasterData;
-    Spinner taskSpinner;
+
 
     public void setupTypeSpinner(){
         taskSpinner.setAdapter(new ArrayAdapter<>(

@@ -10,14 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Task_Adapter extends RecyclerView.Adapter<Task_Adapter.MyViewHolder> {
     Context context;
-    ArrayList<Tasks> taskModel;
+    List<Tasks> taskModel;
 
-    public Task_Adapter(Context context, ArrayList<Tasks> taskModel){
+    public Task_Adapter(List<Tasks> taskModel, Context context){
         this.context = context;
         this.taskModel = taskModel;
+    }
+
+    public Task_Adapter( MainActivity mainActivity) {
     }
 
     @NonNull
@@ -31,8 +35,8 @@ public class Task_Adapter extends RecyclerView.Adapter<Task_Adapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull Task_Adapter.MyViewHolder holder, int position) {
-
-        holder.taskTitle.setText(taskModel.get(position).getTitle());
+        String content = taskModel.get(position).getTitle();
+        holder.taskTitle.setText(content);
         holder.taskDescription.setText(taskModel.get(position).getDescription());
     }
 
