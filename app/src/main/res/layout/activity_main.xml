@@ -10,59 +10,64 @@
         android:id="@+id/textView"
         android:layout_width="114dp"
         android:layout_height="31dp"
-        android:layout_marginTop="30dp"
-        android:text="My Tasks"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="84dp"
+        android:text="Tasks"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_username" />
+        app:layout_constraintEnd_toStartOf="@+id/main_user_setting_btn"
+        app:layout_constraintStart_toEndOf="@+id/button_addTask"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_addTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="300dp"
         android:text="Add Task"
+        app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/main_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="87dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:text="no user"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/main_user_setting_btn" />
 
     <ImageButton
         android:id="@+id/main_user_setting_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="118dp"
+        android:layout_width="50dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="351dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
+        android:background="#00FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/main_username"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_preferences" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
-        android:layout_height="453dp"
-        android:layout_marginTop="30dp"
+        android:layout_height="700dp"
         android:keepScreenOn="false"
         android:scrollX="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:itemCount="100" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
