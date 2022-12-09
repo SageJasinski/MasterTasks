@@ -24,7 +24,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     ArrayList<Tasks> taskModel = new ArrayList<>();
     TaskmasterData taskmasterData;
-    public static final String DATABASE_NAME = "MasterTask_db";
+    public static final String DATABASE_NAME = "task_database";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +37,12 @@ public class MainActivity extends AppCompatActivity {
 
         Button btn = (Button)findViewById(R.id.button_addTask);
         ImageButton imgBtn = findViewById(R.id.main_user_setting_btn);
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+//        RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
-        setTaskModel();
-        Task_Adapter adapter = new Task_Adapter(this, taskModel);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        setTaskModel();
+//        Task_Adapter adapter = new Task_Adapter(this, taskModel);
+//        recyclerView.setAdapter(adapter);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
     public void onResume(){
         super.onResume();
         setGreeting();
+        setRecyclerView();
     }
 
     public void setGreeting(){
@@ -86,6 +87,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void setRecyclerView(){
         List<Tasks> tasks = taskmasterData.taskDAO().findAll();
+
+        RecyclerView taskRecycled = findViewById(R.id.recyclerView);
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(this);
+        taskRecycled.setLayoutManager(manager);
+
+        Task_Adapter adapter = new Task_Adapter(tasks, this);
+
+        taskRecycled.setAdapter(adapter);
     }
 
 }
