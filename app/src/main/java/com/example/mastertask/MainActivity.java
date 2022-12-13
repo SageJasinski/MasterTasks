@@ -8,7 +8,7 @@ import android.os.Bundle;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
+
 
 import android.view.View;
 import android.widget.Button;
@@ -16,24 +16,25 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.mastertask.database.TaskmasterData;
+
+import com.amplifyframework.datastore.generated.model.Task;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    ArrayList<Tasks> taskModel = new ArrayList<>();
-    TaskmasterData taskmasterData;
+    ArrayList<Task> taskModel = new ArrayList<>();
+//    TaskmasterData taskmasterData;
     public static final String DATABASE_NAME = "task_database";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        taskmasterData = Room.databaseBuilder(
-                getApplicationContext(),
-                TaskmasterData.class,
-                DATABASE_NAME).fallbackToDestructiveMigration().allowMainThreadQueries().build();
+//        taskmasterData = Room.databaseBuilder(
+//                getApplicationContext(),
+////                TaskmasterData.class,
+//                DATABASE_NAME).fallbackToDestructiveMigration().allowMainThreadQueries().build();
 
         Button btn = (Button)findViewById(R.id.button_addTask);
         ImageButton imgBtn = findViewById(R.id.main_user_setting_btn);
@@ -60,14 +61,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        setRecyclerView();
+        setTaskModel();
     }
 
     @Override
     public void onResume(){
         super.onResume();
         setGreeting();
-        setRecyclerView();
+        setTaskModel();
     }
 
     public void setGreeting(){
@@ -80,21 +81,21 @@ public class MainActivity extends AppCompatActivity {
         String[] taskTitle = getResources().getStringArray(R.array.default_tasks_titles);
         String[] taskDescription = getResources().getStringArray(R.array.default_tasks_description);
 
-        for (int i = 0; i < taskTitle.length; i++){
-            taskModel.add(new Tasks(taskTitle[i], taskDescription[i], false));
-        }
+//        for (int i = 0; i < taskTitle.length; i++){
+//            taskModel.add(new Task(taskTitle[i], taskDescription[i], false));
+//        }
     }
 
-    private void setRecyclerView(){
-        List<Tasks> tasks = taskmasterData.taskDAO().findAll();
-
-        RecyclerView taskRecycled = findViewById(R.id.recyclerView);
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(this);
-        taskRecycled.setLayoutManager(manager);
-
-        Task_Adapter adapter = new Task_Adapter(tasks, this);
-
-        taskRecycled.setAdapter(adapter);
-    }
+//    private void setRecyclerView(){
+//        List<Tasks> tasks = taskmasterData.taskDAO().findAll();
+//
+//        RecyclerView taskRecycled = findViewById(R.id.recyclerView);
+//        RecyclerView.LayoutManager manager = new LinearLayoutManager(this);
+//        taskRecycled.setLayoutManager(manager);
+//
+//        Task_Adapter adapter = new Task_Adapter(tasks, this);
+//
+//        taskRecycled.setAdapter(adapter);
+//    }
 
 }

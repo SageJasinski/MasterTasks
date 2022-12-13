@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "mastertask",
+    "serviceName": "AppSync",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 30,
+      "apiKeyExpirationDate": "2023-01-12T02:55:14.748Z",
+      "keyDescription": "30"
+    },
+    "conflictResolution": {},
+    "additionalAuthTypes": []
+  }
+}
