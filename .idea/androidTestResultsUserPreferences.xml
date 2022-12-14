@@ -11,6 +11,9 @@
                   <entry key="Apk_30_Codefellows" value="120" />
                   <entry key="Duration" value="90" />
                   <entry key="Tests" value="360" />
+                  <entry key="adb-RFCR91ME0AB-b4MVel._adb-tls-connect._tcp" value="120" />
+                  <entry key="samsung" value="120" />
+                  <entry key="samsung&#10; SM-G996U" value="120" />
                 </map>
               </option>
             </AndroidTestResultsTableState>

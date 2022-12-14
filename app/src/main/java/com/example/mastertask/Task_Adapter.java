@@ -9,14 +9,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.amplifyframework.datastore.generated.model.Task;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Task_Adapter extends RecyclerView.Adapter<Task_Adapter.MyViewHolder> {
     Context context;
-    List<Tasks> taskModel;
+    List<Task> taskModel;
 
-    public Task_Adapter(List<Tasks> taskModel, Context context){
+    public Task_Adapter(List<Task> taskModel, Context context){
         this.context = context;
         this.taskModel = taskModel;
     }
