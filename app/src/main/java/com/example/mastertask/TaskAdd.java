@@ -4,10 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 
@@ -44,6 +42,7 @@ public class TaskAdd extends AppCompatActivity {
         Button save = findViewById(R.id.task_add_butt_input);
 
         save.setOnClickListener(v -> {
+
             Task newTask = Task.builder()
                     .title(((EditText)findViewById(R.id.add_task_input)).getText().toString())
                     .description(((EditText)findViewById(R.id.task_add_description_input)).getText().toString())

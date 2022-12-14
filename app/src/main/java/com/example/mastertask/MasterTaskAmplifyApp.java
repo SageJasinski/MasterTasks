@@ -14,7 +14,9 @@ public class MasterTaskAmplifyApp  extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
         try{
+            Log.i(TAG, "initialized amplify");
             Amplify.addPlugin(new AWSApiPlugin());
             Amplify.configure(getApplicationContext());
         } catch (AmplifyException ae){

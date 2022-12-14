@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -17,33 +18,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    ArrayList<Task> taskModel = new ArrayList<>();
+    List<Task> taskModel;
 //    TaskmasterData taskmasterData;
     public static final String DATABASE_NAME = "task_database";
+    private String TAG = "Mainactivity";
+    Task_Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        taskmasterData = Room.databaseBuilder(
-//                getApplicationContext(),
-////                TaskmasterData.class,
-//                DATABASE_NAME).fallbackToDestructiveMigration().allowMainThreadQueries().build();
 
         Button btn = (Button)findViewById(R.id.button_addTask);
         ImageButton imgBtn = findViewById(R.id.main_user_setting_btn);
-//        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-
-//        setTaskModel();
-//        Task_Adapter adapter = new Task_Adapter(this, taskModel);
-//        recyclerView.setAdapter(adapter);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +63,22 @@ public class MainActivity extends AppCompatActivity {
     public void onResume(){
         super.onResume();
         setGreeting();
+
         setTaskModel();
+
+        Amplify.API.query(
+
+        ModelQuery.list(Task.class),
+        success ->{
+
+            for(Task dataTask : success.getData()){
+                taskModel.add(dataTask);
+            }
+            runOnUiThread(() -> adapter.notifyDataSetChanged());
+        },
+        failure -> { Log.w(TAG, "Failed to reed database");}
+        );
+
     }
 
     public void setGreeting(){
@@ -77,25 +87,14 @@ public class MainActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.main_username)).setText(username);
     }
 
-    private void setTaskModel(){
-        String[] taskTitle = getResources().getStringArray(R.array.default_tasks_titles);
-        String[] taskDescription = getResources().getStringArray(R.array.default_tasks_description);
+    private void setTaskModel() {
+        taskModel = new ArrayList<>();
 
-//        for (int i = 0; i < taskTitle.length; i++){
-//            taskModel.add(new Task(taskTitle[i], taskDescription[i], false));
-//        }
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        adapter = new Task_Adapter(taskModel, this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
     }
-
-//    private void setRecyclerView(){
-//        List<Tasks> tasks = taskmasterData.taskDAO().findAll();
-//
-//        RecyclerView taskRecycled = findViewById(R.id.recyclerView);
-//        RecyclerView.LayoutManager manager = new LinearLayoutManager(this);
-//        taskRecycled.setLayoutManager(manager);
-//
-//        Task_Adapter adapter = new Task_Adapter(tasks, this);
-//
-//        taskRecycled.setAdapter(adapter);
-//    }
 
 }
