@@ -42,6 +42,8 @@ dependencies {
 
     implementation 'com.amplifyframework:aws-auth-cognito:2.0.0'
 
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+
     implementation 'com.amplifyframework:aws-api:2.0.0'
     implementation 'com.amplifyframework:aws-datastore:2.0.0'
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.5.1"

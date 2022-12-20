@@ -33,7 +33,7 @@ public class SignUpActivity extends AppCompatActivity {
             Amplify.Auth.signUp(
                 userEmail,userPassword, AuthSignUpOptions.builder().userAttribute(AuthUserAttributeKey.email(), userEmail).build(),
                 success -> {
-                    Log.i(TAG, "SignUp sucess");
+                    Log.i(TAG, "SignUp success");
                     Intent goToVerifyActivity = new Intent(this, VerifySignUpActivity.class);
                     goToVerifyActivity.putExtra(SIGNUP_EMAIL_TAG, userEmail);
                     startActivity(goToVerifyActivity);
