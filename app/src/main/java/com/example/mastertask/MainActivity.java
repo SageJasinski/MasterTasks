@@ -21,16 +21,18 @@ import android.widget.TextView;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     List<Task> taskModel;
-//    TaskmasterData taskmasterData;
     public static final String DATABASE_NAME = "task_database";
     private String TAG = "Mainactivity";
     Task_Adapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button btn = (Button)findViewById(R.id.button_addTask);
+        Button locationBTN = (Button) findViewById(R.id.button_location);
         ImageButton imgBtn = findViewById(R.id.main_user_setting_btn);
+
+        locationBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Location.class);
+                startActivity(intent);
+            }
+        });
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
