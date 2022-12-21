@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.amplifyframework.analytics.AnalyticsEvent;
+import com.amplifyframework.core.Amplify;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -21,6 +23,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.Locale;
 
 
@@ -48,6 +51,17 @@ public class Location extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+       //analitics added
+
+        AnalyticsEvent event = AnalyticsEvent.builder().name("Opened Analytics Activity")
+                .addProperty("Time", Long.toString(new Date().getTime()))
+                .addProperty("trackingEvent", "Analytics activity was opened")
+                .build();
+
+            Amplify.Analytics.recordEvent(event);
+
     }
 
     public void onResume() {
